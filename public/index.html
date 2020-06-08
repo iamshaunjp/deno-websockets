@@ -95,6 +95,34 @@
     // new ws connection
     let ws = new WebSocket('ws://localhost:3000/ws');
 
+    // dom refs
+    const nameForm = document.querySelector('.name-form');
+    const chatroom = document.querySelector('.chatroom');
+    const chatList = document.querySelector('.chat-list');
+    const chatForm = document.querySelector('.chat-form');
+
+    // name
+    let name = 'anon';
+
+    // enter chatroom with name
+    nameForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      name = nameForm.nickname.value;
+      nameForm.classList.add('hidden');
+      chatroom.classList.remove('hidden');
+    });
+
+    // send a new chat message
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let mssg = chatForm.mssg.value;
+      ws.send(JSON.stringify({ name, mssg }));
+      chatForm.reset();
+    });
+
+
   </script>
 </body>
 </html>
