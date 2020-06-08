@@ -3,12 +3,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebSockets Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    
+    body{
+      background: #eee;
+      margin: 40px;
+    }
+    body, button, input{ 
+      font-family: Inter;
+    }
+    h1{
+      text-align: center;
+      color: #444;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #fbfbfb;
+    }
+    .container{ 
+      max-width: 960px; 
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+    .name-form, .chat-form{ 
+      display: flex; 
+      justify-content: center;
+    }
+    input{ 
+      padding: 16px; 
+      font-size: 1.3em; 
+      margin-right: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 10px;
+    }
+    button{ 
+      font-size: 1.3em; 
+      padding: 16px; 
+      background: #006aee; 
+      color: white; 
+      border: 0; 
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .chat-list { 
+      padding: 0;
+    }
+    .chat-list li{ 
+      margin: 16px 0; 
+      list-style-type: none; 
+    }
+    .chat-list .name{ 
+      color: #006aee;
+      font-size: 1.4em; 
+      font-weight: bold; 
+    }
+    .chat-list .mssg{ 
+      font-size: 1.2em;
+      margin-top: 4px;
+    } 
+    .hidden{
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Ninja Chat</h1>
+  <div class="container">
+    <h1>Ninja Chat</h1>
+
+    <form class="name-form">
+      <input type="text" name="nickname" placeholder="Choose Nickname" required>
+      <button>Enter Chat</button>
+    </form>
+
+    <div class="chatroom hidden">
+      <ul class="chat-list">
+        <li>
+          <div class="name">yoshi</div>
+          <div class="mssg">hey all :)</div>
+        </li>
+      </ul>
+      <form class="chat-form">
+        <input type="text" name="mssg" placeholder="Type message..." required>
+        <button>Send</button>
+      </form>
+    </div>
+  </div>
   
   <script>
     
