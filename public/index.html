@@ -78,12 +78,7 @@
     </form>
 
     <div class="chatroom hidden">
-      <ul class="chat-list">
-        <li>
-          <div class="name">yoshi</div>
-          <div class="mssg">hey all :)</div>
-        </li>
-      </ul>
+      <ul class="chat-list"></ul>
       <form class="chat-form">
         <input type="text" name="mssg" placeholder="Type message..." required>
         <button>Send</button>
@@ -122,7 +117,21 @@
       chatForm.reset();
     });
 
+    // output event to dom
+    const outputMessage = ({ data }) => {
+      const { name, mssg } = JSON.parse(data);
 
+      let template = `
+        <li>
+          <div class='name'>${name}</div>
+          <div class='mssg'>${mssg}</div>
+        </li>
+      `;
+      chatList.innerHTML += template;
+    };
+
+    // setup listener
+    ws.addEventListener('message', outputMessage);
   </script>
 </body>
 </html>
